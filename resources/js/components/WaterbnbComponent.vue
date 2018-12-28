@@ -1,0 +1,117 @@
+
+<template>
+  <!-- Wrap this in a for loop -->
+
+    <div class="col-md-12">
+      <a class="btn btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        &#9727; Filters
+      </a>
+      <br />
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="background-color:rgba(0, 0, 0, 0); border: none;">
+          <div class="row">
+            <div class="col-md-4" style=" margin: 2px;">
+              <label class="mr-sm-2" for="inlineFormCustomSelect">Type of BNB:</label>
+              <div class="filter">
+              <label><input type="radio" checked v-on:change="onCheckboxChanged" v-model="selectedCategory" value="All"/> All</label>
+              <label><input type="radio" v-on:change="onCheckboxChanged" v-model="selectedCategory" value="Private" /> Private</label>
+              <label><input type="radio" v-on:change="onCheckboxChanged" v-model="selectedCategory" value="Shared" /> Shared</label>
+              </div>
+            </div>
+            <div class="col" style=" margin: 2px;">
+              <!--  -->
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-4" style=" margin: 2px;">
+              <form @submit.prevent="searchTitle()">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Specific BNB:</label>
+                <input v-on:input="searchTitle" type="text" class="form-control" style="" v-model="search" aria-describedby="emailHelp" placeholder="Search...">
+              </form>
+            </div>
+            <div class="col" style=" margin: 2px;">
+              <!--  -->
+            </div>
+          </div>
+        </div>
+      </div><br />
+
+        <!-- <input type="text" class="form-control" placeholder="Filter Your Search" style="margin-top: 25px"/> -->
+        <div class="row">
+          <div v-for="(listing, index) in listings">
+          <div class="col-md-4">
+              <div class="card text-white bg-dark mb-3" style="width: 247px; height: 20rem;  ">
+                <div class="card-body">
+                  <h5 class="card-title" style="padding-bottom: 20px; position: relative">{{ listing.title }}</h5>
+                  <hr />
+                  <h6 class="card-subtitle mb-2 text-muted">{{ listing.desc }}</h6>
+                  <p class="card-text">RM{{ listing.price }}</p>
+                  <p class="card-text">{{ listing.type }}</p>
+                  <p class="card-text">{{ listing.location }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </center>
+    </div>
+  <!-- End of For Loop -->
+</template>
+
+<script>
+
+    export default {
+      mounted() {
+        console.log('Component mounted.')
+      },
+
+      data() {
+        return {
+          listings: [],
+          listing: {
+            id: '',
+            title: '',
+            desc: '',
+            price: '',
+            type: '',
+            location: '',
+            rentor_name: ''
+          },
+          selectedCategory: '',
+          search: ''
+        };
+      },
+
+      created(){
+        this.fetchListings();
+      },
+
+      methods: {
+        fetchListings: function(){
+          axios.get('/listings', this.listing)
+            .then(({ data }) => {
+              this.listings = data;
+            })
+            .catch((err) => console.error(err));
+        },
+        onCheckboxChanged: function(){
+          let type = this.selectedCategory;
+          axios.get('/listings?type=' + type)
+          .then(({ data }) => {
+            this.listings = data;
+          }, (error) => {
+            console.log(error);
+          });
+        },
+        searchTitle: function(){
+          let title = this.search;
+          let type = this.selectedCategory;
+          axios.get('/listings?title=' + title + "&type=" + type)
+          .then(({data}) => {
+            this.listings = data;
+          });
+        }
+      },
+
+
+    }
+</script>

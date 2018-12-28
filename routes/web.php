@@ -11,6 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@index')->name('root');
+Route::get('listings', 'PageController@index')->name('listing.index');
+/*
+|----------------------------- Displaying all the listings --------------------------------
+|
+|
+|
+|----------------------------- Creating a listings ----------------------------------------
+|
+|
+|
+|----------------------------- Filtering all the listings ---------------------------------
+|
+|
+|
+|----------------------------- Pagination -------------------------------------------------
+*/
