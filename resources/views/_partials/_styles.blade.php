@@ -3,7 +3,6 @@
 }
 
 body {
-  margin-top: 2em;
   background-color: #212529;
   color: #ffffff;
 }
@@ -19,6 +18,15 @@ hr {
     background-image: linear-gradient(#343a40, #212529);
     border-radius: 5px;
     margin: 10px;
+    margin-top: 1rem;
+}
+
+.alert {
+  margin: 1rem;
+}
+
+.containerform{
+  margin-left: 2rem;
 }
 
 .pos-f-t {

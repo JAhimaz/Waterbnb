@@ -1823,9 +1823,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
+  props: ["isLoggedIn"],
   data: function data() {
     return {
       listings: [],
@@ -1841,6 +1839,9 @@ __webpack_require__.r(__webpack_exports__);
       selectedCategory: '',
       search: ''
     };
+  },
+  mounted: function mounted() {
+    console.log('Component mounted.', this.isLoggedIn);
   },
   created: function created() {
     this.fetchListings();
@@ -36745,6 +36746,17 @@ var render = function() {
       [_vm._v("\n      ◿ Filters\n    ")]
     ),
     _vm._v(" "),
+    _vm.isLoggedIn
+      ? _c(
+          "a",
+          {
+            staticClass: "btn btn btn-success",
+            attrs: { href: "/listings/create" }
+          },
+          [_vm._v("Create Post")]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("br"),
     _vm._v(" "),
     _c("div", { staticClass: "collapse", attrs: { id: "collapseExample" } }, [
@@ -36932,39 +36944,46 @@ var render = function() {
               "div",
               {
                 staticClass: "card text-white bg-dark mb-3",
-                staticStyle: { width: "247px", height: "20rem" }
+                staticStyle: { width: "340px", height: "30rem" }
               },
               [
                 _c("div", { staticClass: "card-body" }, [
+                  _c("h5", { staticClass: "card-title text-center" }, [
+                    _vm._v(_vm._s(listing.title))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(_vm._s(listing.desc))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("ul", { staticClass: "list-group list-group-flush" }, [
                   _c(
-                    "h5",
-                    {
-                      staticClass: "card-title",
-                      staticStyle: {
-                        "padding-bottom": "20px",
-                        position: "relative"
-                      }
-                    },
-                    [_vm._v(_vm._s(listing.title))]
+                    "li",
+                    { staticClass: "list-group-item text-white bg-dark" },
+                    [_vm._v(_vm._s(listing.rentor_name))]
                   ),
                   _vm._v(" "),
-                  _c("hr"),
+                  _c(
+                    "li",
+                    { staticClass: "list-group-item text-white bg-dark" },
+                    [_vm._v(_vm._s(listing.type))]
+                  ),
                   _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle mb-2 text-muted" }, [
-                    _vm._v(_vm._s(listing.desc))
-                  ]),
+                  _c(
+                    "li",
+                    { staticClass: "list-group-item text-white bg-dark" },
+                    [_vm._v(_vm._s(listing.location))]
+                  ),
                   _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v("RM" + _vm._s(listing.price))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(listing.type))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v(_vm._s(listing.location))
-                  ])
+                  _c(
+                    "li",
+                    {
+                      staticClass:
+                        "list-group-item text-white bg-dark font-weight-bold text-right"
+                    },
+                    [_c("h3", [_vm._v("RM" + _vm._s(listing.price))])]
+                  )
                 ])
               ]
             )

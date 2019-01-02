@@ -34,4 +34,24 @@ class ListingService extends TransformerService{
       'rentor_name' => $listing->rentor_name
     ];
   }
+
+  public function store(){
+    $data = $request->validate([
+      'title' => 'required|string|min:1|max:28',
+      'desc' => 'required|string|min:10|max:250',
+      'price' => 'required|numeric|digits_between:10.00,9999.99',
+      'type' => 'required',
+      'location' => 'required',
+      'rentor_name' => 'required'
+    ]);
+
+    dd(current_user());
+
+		Todo::create([
+      'title' => $data['title'],
+      'user_id' => current_user()->id
+    ]);
+
+    return response()->json('Stored');
+  }
 }
