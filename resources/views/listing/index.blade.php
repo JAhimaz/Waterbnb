@@ -16,7 +16,7 @@ label{
     </div>
   </div>
   <div id="app">
-    <waterbnb></waterbnb>
+    <waterbnb is-logged-in="{{is_logged_in()}}"></waterbnb>
   </div>
 
   <script src="{{ asset('/js/app.js') }}"></script>

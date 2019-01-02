@@ -6,7 +6,7 @@ use App\Listing;
 use Illuminate\Http\Request;
 use App\Services\ListingService;
 
-class PageController extends Controller
+class ListingsController extends Controller
 {
   private $listingService;
 
@@ -22,28 +22,8 @@ class PageController extends Controller
     return view('listing.index');
   }
 
-  public function store(Request $request)
+  public function create(Request $request)
   {
-      //
-  }
-
-  public function show($id)
-  {
-      //
-  }
-
-  public function edit($id)
-  {
-      //
-  }
-
-  public function update(Request $request, $id)
-  {
-      //
-  }
-
-  public function destroy($id)
-  {
-      //
+    return view('listing.create');
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit;
+namespace Tests\Feature;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -12,8 +12,9 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicTest()
+    public function is_redirected_to_login_Test()
     {
-        $this->assertTrue(true);
+        $response = $this->get('/');
+        $response->assertUrlIs('/');
     }
 }

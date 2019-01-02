@@ -1,11 +1,9 @@
-
 <template>
-  <!-- Wrap this in a for loop -->
-
     <div class="col-md-12">
       <a class="btn btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         &#9727; Filters
       </a>
+      <a class="btn btn btn-success" href="/listings/create" v-if="isLoggedIn">Create Post</a>
       <br />
       <div class="collapse" id="collapseExample">
         <div class="card card-body" style="background-color:rgba(0, 0, 0, 0); border: none;">
@@ -39,20 +37,22 @@
         <div class="row">
           <div v-for="(listing, index) in listings">
           <div class="col-md-4">
-              <div class="card text-white bg-dark mb-3" style="width: 247px; height: 20rem;  ">
-                <div class="card-body">
-                  <h5 class="card-title" style="padding-bottom: 20px; position: relative">{{ listing.title }}</h5>
-                  <hr />
-                  <h6 class="card-subtitle mb-2 text-muted">{{ listing.desc }}</h6>
-                  <p class="card-text">RM{{ listing.price }}</p>
-                  <p class="card-text">{{ listing.type }}</p>
-                  <p class="card-text">{{ listing.location }}</p>
-                </div>
+            <div class="card text-white bg-dark mb-3" style="width: 340px; height: 30rem;  ">
+              <div class="card-body">
+                <h5 class="card-title text-center">{{ listing.title }}</h5>
+                <p class="card-text">{{ listing.desc }}</p>
               </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }}</li>
+                <li class="list-group-item text-white bg-dark">{{ listing.type }}</li>
+                <li class="list-group-item text-white bg-dark">{{ listing.location }}</li>
+                <li class="list-group-item text-white bg-dark font-weight-bold text-right"><h3>RM{{ listing.price}}</h3></li>
+              </ul>
+            </div>
+
             </div>
           </div>
         </div>
-      </center>
     </div>
   <!-- End of For Loop -->
 </template>
@@ -60,11 +60,11 @@
 <script>
 
     export default {
-      mounted() {
-        console.log('Component mounted.')
-      },
+      props:[
+        "isLoggedIn"
+      ],
 
-      data() {
+      data: function() {
         return {
           listings: [],
           listing: {
@@ -79,6 +79,10 @@
           selectedCategory: '',
           search: ''
         };
+      },
+
+      mounted() {
+        console.log('Component mounted.', this.isLoggedIn);
       },
 
       created(){
