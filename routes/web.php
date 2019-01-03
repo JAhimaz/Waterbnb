@@ -19,6 +19,15 @@ Route::get('listings', 'ListingsController@index')->name('listing.index');
 Route::middleware('auth')->group(function(){
   //Creating Post
   Route::get('listings/create', 'ListingsController@create')->name('listing.create');
+  Route::post('listings', 'ListingsController@store')->name('listings.store');
+
+  //Updating post
+  Route::get('listings/{listing}/edit', 'ListingsController@edit')->name('listing.edit');
+  Route::put('listings/{listing}', 'ListingsController@update')->name('listing.update');
+
+  //Deleting POST
+Route::delete('listings/{listing}', 'ListingsController@destroy')->name('listing.delete');
+
   //Logout
   Route::get('logout', 'AuthController@logout')->name('logout');
 });

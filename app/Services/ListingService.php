@@ -31,27 +31,55 @@ class ListingService extends TransformerService{
       'price' => $listing->price,
       'type' => $listing->type,
       'location' => $listing->location,
-      'rentor_name' => $listing->rentor_name
+      'user_id' => $listing->user_id
     ];
   }
 
-  public function store(){
+  public function store($request){
     $data = $request->validate([
       'title' => 'required|string|min:1|max:28',
       'desc' => 'required|string|min:10|max:250',
-      'price' => 'required|numeric|digits_between:10.00,9999.99',
+      'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
       'type' => 'required',
       'location' => 'required',
-      'rentor_name' => 'required'
     ]);
 
-    dd(current_user());
-
-		Todo::create([
-      'title' => $data['title'],
-      'user_id' => current_user()->id
+		$listing = Listing::create([
+      'title' => $data["title"],
+      'desc' => $data["desc"],
+      'price' => $data["price"],
+      'type' => $data["type"],
+      'location' => $data["location"],
+      'rentor_name' => auth()->user()->name,
+      'user_id' => auth()->user()->id,
     ]);
 
-    return response()->json('Stored');
+    return redirect()->route('listing.index');
+  }
+
+  public function update(Request $request, Listing $listing){
+  $data = $request->validate([
+    'title' => 'required|string|min:1|max:28',
+    'desc' => 'required|string|min:10|max:250',
+    'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+    'type' => 'required',
+    'location' => 'required',
+  ]);
+
+  $listing->title = $data['title'];
+  $listing->desc = $data["desc"];
+  $listing->price = $data["price"];
+  $listing->type = $data["type"];
+  $listing->location = $data["location"];
+  $listing->rentor_name = auth()->user()->name;
+  $listing->save();
+
+  return redirect()->route('listing.index');
+  }
+
+  public function destroy(Listing $listing){
+  $listing->delete();
+
+  return response()->json('deleted');
   }
 }

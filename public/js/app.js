@@ -1822,8 +1822,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["isLoggedIn"],
+  props: ["isLoggedIn", "userId"],
   data: function data() {
     return {
       listings: [],
@@ -1834,6 +1838,7 @@ __webpack_require__.r(__webpack_exports__);
         price: '',
         type: '',
         location: '',
+        user_id: '',
         rentor_name: ''
       },
       selectedCategory: '',
@@ -1876,6 +1881,15 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/listings?title=' + title + "&type=" + type).then(function (_ref3) {
         var data = _ref3.data;
         _this3.listings = data;
+      });
+    },
+    deleteRoom: function deleteRoom(id) {
+      var _this4 = this;
+
+      axios.delete('/listings/' + id).then(function (response) {
+        _this4.fetchListings();
+      }).catch(function (err) {
+        return console.error(err);
       });
     }
   }
@@ -36937,7 +36951,7 @@ var render = function() {
     _c(
       "div",
       { staticClass: "row" },
-      _vm._l(_vm.listings, function(listing, index) {
+      _vm._l(_vm.listings.slice().reverse(), function(listing, index) {
         return _c("div", [
           _c("div", { staticClass: "col-md-4" }, [
             _c(
@@ -36978,11 +36992,43 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "li",
-                    {
-                      staticClass:
-                        "list-group-item text-white bg-dark font-weight-bold text-right"
-                    },
-                    [_c("h3", [_vm._v("RM" + _vm._s(listing.price))])]
+                    { staticClass: "list-group-item text-white bg-dark " },
+                    [
+                      _vm.userId === listing.user_id
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-warning float-left",
+                              staticStyle: { "margin-right": "5px" },
+                              attrs: {
+                                href: "/listings/" + listing.id + "/edit",
+                                role: "button"
+                              }
+                            },
+                            [_vm._v("Edit")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.userId === listing.user_id
+                        ? _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-danger float-left",
+                              attrs: { name: "delete" },
+                              on: {
+                                click: function($event) {
+                                  _vm.deleteRoom(listing.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Delete")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("h3", { staticClass: "font-weight-bold text-right" }, [
+                        _vm._v("RM" + _vm._s(listing.price))
+                      ])
+                    ]
                   )
                 ])
               ]
