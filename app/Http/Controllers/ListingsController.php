@@ -14,16 +14,30 @@ class ListingsController extends Controller
     $this->listingService = $listingService;
   }
 
-  public function index(Request $request)
-  {
+  public function index(Request $request){
     if ($request->wantsJson()){
       return $this->listingService->all($request);
     }
     return view('listing.index');
   }
 
-  public function create(Request $request)
-  {
+  public function create(Request $request){
     return view('listing.create');
+  }
+
+  public function store(Request $request){
+    return $this->listingService->store($request);
+  }
+
+  public function edit(Listing $listing){
+    return view('listing.edit', ['listing' => $listing]);
+  }
+
+  public function update(Request $request, Listing $listing){
+    return $this->listingService->update($request, $listing);
+  }
+
+  public function destroy(Listing $listing){
+    return $this->listingService->destroy($listing);
   }
 }

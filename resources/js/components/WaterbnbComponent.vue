@@ -35,7 +35,7 @@
 
         <!-- <input type="text" class="form-control" placeholder="Filter Your Search" style="margin-top: 25px"/> -->
         <div class="row">
-          <div v-for="(listing, index) in listings">
+          <div v-for="(listing, index) in listings.slice().reverse()">
           <div class="col-md-4">
             <div class="card text-white bg-dark mb-3" style="width: 340px; height: 30rem;  ">
               <div class="card-body">
@@ -46,7 +46,11 @@
                 <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.type }}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.location }}</li>
-                <li class="list-group-item text-white bg-dark font-weight-bold text-right"><h3>RM{{ listing.price}}</h3></li>
+                <li class="list-group-item text-white bg-dark ">
+                  <a :href="'/listings/' + listing.id + '/edit'" v-if="userId===listing.user_id" class="btn btn-warning float-left" style="margin-right: 5px;" role="button">Edit</a>
+                  <button @click="deleteRoom(listing.id)"  name="delete" v-if="userId===listing.user_id" class="btn btn-danger float-left">Delete</button>
+                  <h3 class="font-weight-bold text-right">RM{{ listing.price}}</h3>
+                </li>
               </ul>
             </div>
 
@@ -61,7 +65,8 @@
 
     export default {
       props:[
-        "isLoggedIn"
+        "isLoggedIn",
+        "userId"
       ],
 
       data: function() {
@@ -74,6 +79,7 @@
             price: '',
             type: '',
             location: '',
+            user_id: '',
             rentor_name: ''
           },
           selectedCategory: '',
@@ -113,7 +119,14 @@
           .then(({data}) => {
             this.listings = data;
           });
-        }
+        },
+        deleteRoom: function(id) {
+          axios.delete('/listings/' + id)
+          .then((response) => {
+          this.fetchListings();
+        })
+        .catch((err) => console.error(err));
+        },
       },
 
 

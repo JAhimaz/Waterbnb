@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Listing;
+use App\User;
 
 class ListingTableSeeder extends Seeder
 {
@@ -12,7 +13,8 @@ class ListingTableSeeder extends Seeder
      */
     public function run()
     {
+      User::truncate();
       Listing::truncate();
-      factory(Listing::class, 20)->create();
+      factory(Listing::class, 10)->create();
     }
 }

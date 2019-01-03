@@ -15,35 +15,35 @@
                                     margin-right: 2rem;
                                     padding: 2rem;">
     <row>
-      <h1 class="col-md-8 col-md-offset-4">SUBMIT A <span style="color: #33A2FF">WATERBNB</span></h1>
-      <p class="col-md-8 col-md-offset-4">Logged in as: <?php echo ucfirst(current_user()->name) ?></p><br />
+      <h1 class="col-md-8 col-md-offset-4">EDITING A <span style="color: #33A2FF">WATERBNB</span></h1>
+      <p class="col-md-8 col-md-offset-4">Current User: <?php echo ucfirst(current_user()->name) ?> | Waterbnb Listing ID: <?php echo $listing->id ?></p>
     </row>
     <row>
       <div class="col-md-8 col-md-offset-4">
-        {!! Form::open(['route' => 'listings.store']) !!}
+        {!! Form::model($listing, ['route' => ['listing.update', $listing->id], 'method' => 'put', 'class' => 'form']) !!}
         <div class="form-row">
           <div class="form-group col-md-8">
             <label for="title">Title</label>
-            <input type="title" class="form-control" name="title" placeholder="Enter a title">
+            <input type="title" class="form-control" name="title" value="{{$listing->title}}">
           </div>
           <div class="form-group col-md-4">
             <label for="price">Price (RM)</label>
-            <input type="number" class="form-control" name="price" step="0.01" min="10.00" max="9999.99" placeholder="RM299.99" pattern="^\d*(\.\d{0,2})?$"/>
+            <input type="number" class="form-control" name="price" step="0.01" min="10.00" max="9999.99"  pattern="^\d*(\.\d{0,2})?$"/ value="{{$listing->price}}">
           </div>
         </div>
         <div class="form-group">
           <label for="desc">Description</label>
-          <textarea type="desc" class="form-control" name="desc" placeholder="Enter a Description"></textarea>
+          <textarea type="desc" class="form-control" name="desc">{{$listing->desc}}</textarea>
         </div>
         <div class="form-group">
           <label for="location">Address</label>
-          <input type="text" class="form-control" name="location" placeholder="1234 Main St">
+          <input type="text" class="form-control" name="location" value="{{$listing->location}}">
         </div>
         <div class="form-row">
         <div class="form-group col-md-4">
           <label for="type">Type</label>
           <select name="type" class="form-control">
-            <option value="" selected disabled hidden>Choose Your Type</option>
+            <option value="{{$listing->type}}" selected hidden>{{$listing->type}}</option>
             <option value="Private">Private</option>
             <option value="Shared">Shared</option>
           </select>
@@ -51,7 +51,7 @@
       </div>
         <div class="form-group">
         </div>
-        <button type="submit" class="btn btn-success btn-lg">Create</button>
+        <button type="submit" class="btn btn-success btn-lg">Update</button>
         {{-- <button type="submit" class="btn btn-danger float-right btn-lg">Cancel</button> --}}
         {!! Form::close() !!}
       </div>
