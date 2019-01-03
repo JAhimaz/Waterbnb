@@ -1826,6 +1826,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["isLoggedIn", "userId"],
   data: function data() {
@@ -36764,10 +36775,10 @@ var render = function() {
       ? _c(
           "a",
           {
-            staticClass: "btn btn btn-success",
+            staticClass: "btn btn btn-primary float-right",
             attrs: { href: "/listings/create" }
           },
-          [_vm._v("Create Post")]
+          [_vm._v("Add Your BNB "), _c("b", [_vm._v("+")])]
         )
       : _vm._e(),
     _vm._v(" "),
@@ -36908,34 +36919,38 @@ var render = function() {
                       [_vm._v("Specific BNB:")]
                     ),
                     _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.search,
-                          expression: "search"
+                    _c("div", { staticClass: "input-group" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          "aria-describedby": "basic-addon1",
+                          placeholder: "Search..."
+                        },
+                        domProps: { value: _vm.search },
+                        on: {
+                          input: [
+                            function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.search = $event.target.value
+                            },
+                            _vm.searchTitle
+                          ]
                         }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        type: "text",
-                        "aria-describedby": "emailHelp",
-                        placeholder: "Search..."
-                      },
-                      domProps: { value: _vm.search },
-                      on: {
-                        input: [
-                          function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.search = $event.target.value
-                          },
-                          _vm.searchTitle
-                        ]
-                      }
-                    })
+                      })
+                    ])
                   ]
                 )
               ]
@@ -36958,7 +36973,7 @@ var render = function() {
               "div",
               {
                 staticClass: "card text-white bg-dark mb-3",
-                staticStyle: { width: "340px", height: "30rem" }
+                staticStyle: { width: "340px", height: "35rem" }
               },
               [
                 _c("div", { staticClass: "card-body" }, [
@@ -37029,7 +37044,35 @@ var render = function() {
                         _vm._v("RM" + _vm._s(listing.price))
                       ])
                     ]
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "text-white bg-dark " }, [
+                    !_vm.isLoggedIn
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-success btn-block",
+                            attrs: {
+                              name: "booknotloggedin",
+                              role: "button",
+                              href: "/login"
+                            }
+                          },
+                          [_vm._v("Make A Booking")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.isLoggedIn
+                      ? _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-success btn-block",
+                            attrs: { name: "book", role: "button", href: "#" }
+                          },
+                          [_vm._v("Make A Booking")]
+                        )
+                      : _vm._e()
+                  ])
                 ])
               ]
             )
@@ -37040,7 +37083,20 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-prepend" }, [
+      _c(
+        "span",
+        { staticClass: "input-group-text", attrs: { id: "basic-addon1" } },
+        [_vm._v("🔍")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 

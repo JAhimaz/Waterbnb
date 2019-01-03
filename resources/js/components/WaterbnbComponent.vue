@@ -3,7 +3,7 @@
       <a class="btn btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         &#9727; Filters
       </a>
-      <a class="btn btn btn-success" href="/listings/create" v-if="isLoggedIn">Create Post</a>
+      <a class="btn btn btn-primary float-right" href="/listings/create" v-if="isLoggedIn">Add Your BNB <b>+</b></a>
       <br />
       <div class="collapse" id="collapseExample">
         <div class="card card-body" style="background-color:rgba(0, 0, 0, 0); border: none;">
@@ -23,7 +23,14 @@
             <div class="col-md-4" style=" margin: 2px;">
               <form @submit.prevent="searchTitle()">
                 <label class="mr-sm-2" for="inlineFormCustomSelect">Specific BNB:</label>
-                <input v-on:input="searchTitle" type="text" class="form-control" style="" v-model="search" aria-describedby="emailHelp" placeholder="Search...">
+
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">&#x1F50D;</span>
+                  </div>
+                  <input v-on:input="searchTitle" type="text" class="form-control" style="" v-model="search" aria-describedby="basic-addon1" placeholder="Search...">
+                </div>
+
               </form>
             </div>
             <div class="col" style=" margin: 2px;">
@@ -37,7 +44,7 @@
         <div class="row">
           <div v-for="(listing, index) in listings.slice().reverse()">
           <div class="col-md-4">
-            <div class="card text-white bg-dark mb-3" style="width: 340px; height: 30rem;  ">
+            <div class="card text-white bg-dark mb-3" style="width: 340px; height: 35rem;  ">
               <div class="card-body">
                 <h5 class="card-title text-center">{{ listing.title }}</h5>
                 <p class="card-text">{{ listing.desc }}</p>
@@ -50,6 +57,10 @@
                   <a :href="'/listings/' + listing.id + '/edit'" v-if="userId===listing.user_id" class="btn btn-warning float-left" style="margin-right: 5px;" role="button">Edit</a>
                   <button @click="deleteRoom(listing.id)"  name="delete" v-if="userId===listing.user_id" class="btn btn-danger float-left">Delete</button>
                   <h3 class="font-weight-bold text-right">RM{{ listing.price}}</h3>
+                </li>
+                <li class="text-white bg-dark ">
+                  <a name="booknotloggedin" role="button" class="btn btn-success btn-block" href="/login" v-if="!isLoggedIn">Make A Booking</a> <!-- If Not Logged In -->
+                  <a name="book" role="button" class="btn btn-success btn-block" href="#" v-if="isLoggedIn">Make A Booking</a> <!-- If Logged In -->
                 </li>
               </ul>
             </div>

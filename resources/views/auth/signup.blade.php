@@ -10,7 +10,7 @@
 <div class="jumbotron jumbotron-fluid">
 <div class="containerform">
   <row>
-    <h1 class="col-md-4 col-md-offset-4">SIGNUP</h1>
+    <h1 class="col-md-8 col-md-offset-4">Create An Account</h1>
   </row>
   <row>
     <div class="col-md-4 col-md-offset-4">

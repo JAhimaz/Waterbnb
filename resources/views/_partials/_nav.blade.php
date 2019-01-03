@@ -12,11 +12,11 @@
         if(is_logged_in())
         { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <?php echo ucfirst(current_user()->name) ?>
+            Logged In As <i><?php echo ucfirst(current_user()->name) ?></i>
           </a>
         <?php } else { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Account (Guest)
+            Logged In As <i>Guest</i>
           </a>
         <?php } ?>
 
@@ -25,7 +25,7 @@
         { ?>
           <!-- Happens if Logged in -->
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Welcome <?php echo ucfirst(current_user()->name) ?>!</a>
+            <a class="dropdown-item" >Welcome <?php echo ucfirst(current_user()->name) ?>!</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('login.show')}}">Settings</a>
             <a class="dropdown-item" href="{{route('logout')}}">Log Out</a>
@@ -33,10 +33,10 @@
         <?php } else { ?>
           <!-- Happens if NOT Logged in -->
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">My Account</a>
+            <a class="dropdown-item" >My Account</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('login.show')}}">Login</a>
-            <a class="dropdown-item" href="{{route('signup.show')}}">Sign Up</a>
+            <a class="dropdown-item" href="{{route('signup.show')}}">Create An Account</a>
           </div>
         <?php } ?>
 

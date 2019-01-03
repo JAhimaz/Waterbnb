@@ -26,7 +26,7 @@
           <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Your Password...">
         </div>
         <button type="submit" class="btn btn-primary" value="login">Login</button>
-        <a class="btn btn-info" href="{{route('signup.show')}}" role="button">Sign Up</a>
+        <a class="btn btn-info" href="{{route('signup.show')}}" role="button">Create An Account</a>
       {!! Form::close() !!}
       </row>
     </div>
