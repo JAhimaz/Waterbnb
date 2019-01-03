@@ -14,7 +14,7 @@
     </div>
   </div>
   <div id="app">
-    <waterbnb :user-id={{ Auth::user()->id}} :is-logged-in="{{is_logged_in()}}"></waterbnb>
+    <waterbnb user-id="{{user_id_available()}}" is-logged-in="{{is_logged_in()}}"></waterbnb>
   </div>
 
   <script src="{{ asset('/js/app.js') }}"></script>

@@ -24,12 +24,20 @@ if (!function_exists('current_user')){
   }
 }
 
+if (!function_exists('user_id_available')){
+  function user_id_available(){
+    if(current_user()){
+      return current_user()->id;
+    }
+    return 0;
+  }
+}
+
 if (!function_exists('is_logged_in')){
   function is_logged_in(){
     if(current_user()){
       return true;
     }
-
     return false;
   }
 }

@@ -17,19 +17,23 @@ Route::get('listings', 'ListingsController@index')->name('listing.index');
 
 //Logged in Users
 Route::middleware('auth')->group(function(){
+    //------------------------ Posts Related ---------------------------------------
   //Creating Post
   Route::get('listings/create', 'ListingsController@create')->name('listing.create');
   Route::post('listings', 'ListingsController@store')->name('listings.store');
-
   //Updating post
   Route::get('listings/{listing}/edit', 'ListingsController@edit')->name('listing.edit');
   Route::put('listings/{listing}', 'ListingsController@update')->name('listing.update');
-
   //Deleting POST
-Route::delete('listings/{listing}', 'ListingsController@destroy')->name('listing.delete');
+  Route::delete('listings/{listing}', 'ListingsController@destroy')->name('listing.delete');
 
+  //------------------------ Account Related ---------------------------------------
   //Logout
   Route::get('logout', 'AuthController@logout')->name('logout');
+
+  //Edit Account
+  // Route::get('', 'AuthController@edit')->name('user.edit');
+  // Route::put('', 'AuthController@update')->name('user.update');
 });
 
 //Non Users
