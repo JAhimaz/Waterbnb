@@ -31,7 +31,8 @@ class ListingService extends TransformerService{
       'price' => $listing->price,
       'type' => $listing->type,
       'location' => $listing->location,
-      'user_id' => $listing->user_id
+      'user_id' => $listing->user_id,
+      'rentor_name' => $listing->user->name
     ];
   }
 

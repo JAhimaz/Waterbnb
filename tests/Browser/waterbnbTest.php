@@ -15,10 +15,12 @@ class ExampleTest extends DuskTestCase
      */
     public function testBasicExample()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertUrlIs('/login')
-                    ->type('email', 'adam@adam.com');
+        // $this->browse(function (Browser $browser) {
+        //     $browser->visit('/login')
+        //             ->type('email', 'adam@adam.com')
+        //             ->type('password', 'adam@adam.com')
+        //             ->assertUrlIs('http://local.waterbnb.com/login')
+        //             ->click('Login');
         });
     }
 }

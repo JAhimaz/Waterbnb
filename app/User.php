@@ -35,4 +35,9 @@ class User extends Authenticatable
         $user->password = bcrypt($user->password);
       });
     }
+
+    //Relation methods
+    public function listings(){
+      return $this->hasMany('App\Listings');
+    }
 }

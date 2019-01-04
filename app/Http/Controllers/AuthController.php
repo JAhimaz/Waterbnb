@@ -38,7 +38,7 @@ class AuthController extends Controller
 
     $data = $request->validate([
       "email" => "required|unique:users|email",
-      "name" => "required|alpha",
+      "name" => "required|regex:/^[\pL\s\-]+$/u",
       "password" => "required"
     ]);
 

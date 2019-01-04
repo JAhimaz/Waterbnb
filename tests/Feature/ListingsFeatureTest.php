@@ -48,11 +48,9 @@ class ListingsFeatureTest extends TestCase{
      $response->assertStatus(302);
 
      echo $response->getContent();
-     //
-     // echo Listing::where('title', $listings->title)->first();
-     //
-     // $this->assertTrue(Listing::where('title', $listings->title)->first() != null);
   }
+
+
 }
 
 /*
