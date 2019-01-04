@@ -50,7 +50,7 @@
                 <p class="card-text">{{ listing.desc }}</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }}</li>
+                <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }} + {{ listing.id}}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.type }}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.location }}</li>
                 <li class="list-group-item text-white bg-dark ">

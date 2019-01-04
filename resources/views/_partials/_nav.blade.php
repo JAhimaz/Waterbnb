@@ -25,7 +25,7 @@
         { ?>
           <!-- Happens if Logged in -->
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" >Welcome <?php echo ucfirst(current_user()->name) ?>!</a>
+            <a class="dropdown-item" >Welcome <?php echo ucfirst(current_user()->name) " " current_user()->id ?>!</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{route('login.show')}}">Settings</a>
             <a class="dropdown-item" href="{{route('logout')}}">Log Out</a>

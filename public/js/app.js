@@ -36990,7 +36990,11 @@ var render = function() {
                   _c(
                     "li",
                     { staticClass: "list-group-item text-white bg-dark" },
-                    [_vm._v(_vm._s(listing.rentor_name))]
+                    [
+                      _vm._v(
+                        _vm._s(listing.rentor_name) + " + " + _vm._s(listing.id)
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
