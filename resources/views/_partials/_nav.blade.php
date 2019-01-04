@@ -12,11 +12,11 @@
         if(is_logged_in())
         { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Logged In As <i><?php echo ucfirst(current_user()->name) ?></i>
+            Logged In As <b><i><?php echo ucfirst(current_user()->name) ?></i></b>
           </a>
         <?php } else { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Logged In As <i>Guest</i>
+            Logged In As <b><i>Guest</i></b>
           </a>
         <?php } ?>
 
