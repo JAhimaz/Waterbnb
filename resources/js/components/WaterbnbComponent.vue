@@ -50,12 +50,12 @@
                 <p class="card-text">{{ listing.desc }}</p>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }} + {{ listing.id}}</li>
+                <li class="list-group-item text-white bg-dark">{{ listing.rentor_name }}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.type }}</li>
                 <li class="list-group-item text-white bg-dark">{{ listing.location }}</li>
                 <li class="list-group-item text-white bg-dark ">
-                  <a :href="'/listings/' + listing.id + '/edit'" v-if="userId===listing.user_id" class="btn btn-warning float-left" style="margin-right: 5px;" role="button">Edit</a>
-                  <button @click="deleteRoom(listing.id)"  name="delete" v-if="userId===listing.user_id" class="btn btn-danger float-left">Delete</button>
+                  <a :href="'/listings/' + listing.id + '/edit'" v-if="userId==listing.user_id" class="btn btn-warning float-left" style="margin-right: 5px;" role="button">Edit</a>
+                  <button @click="deleteRoom(listing.id)"  name="delete" v-if="userId==listing.user_id" class="btn btn-danger float-left">Delete</button>
                   <h3 class="font-weight-bold text-right">RM{{ listing.price}}</h3>
                 </li>
                 <li class="text-white bg-dark ">
@@ -99,7 +99,7 @@
       },
 
       mounted() {
-        console.log('Component mounted.', this.isLoggedIn);
+        console.log('Component mounted.', this.userId);
       },
 
       created(){

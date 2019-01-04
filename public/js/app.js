@@ -1857,7 +1857,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.', this.isLoggedIn);
+    console.log('Component mounted.', this.userId);
   },
   created: function created() {
     this.fetchListings();
@@ -36990,11 +36990,7 @@ var render = function() {
                   _c(
                     "li",
                     { staticClass: "list-group-item text-white bg-dark" },
-                    [
-                      _vm._v(
-                        _vm._s(listing.rentor_name) + " + " + _vm._s(listing.id)
-                      )
-                    ]
+                    [_vm._v(_vm._s(listing.rentor_name))]
                   ),
                   _vm._v(" "),
                   _c(
@@ -37013,7 +37009,7 @@ var render = function() {
                     "li",
                     { staticClass: "list-group-item text-white bg-dark " },
                     [
-                      _vm.userId === listing.user_id
+                      _vm.userId == listing.user_id
                         ? _c(
                             "a",
                             {
@@ -37028,7 +37024,7 @@ var render = function() {
                           )
                         : _vm._e(),
                       _vm._v(" "),
-                      _vm.userId === listing.user_id
+                      _vm.userId == listing.user_id
                         ? _c(
                             "button",
                             {

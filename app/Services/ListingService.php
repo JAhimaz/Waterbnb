@@ -71,7 +71,6 @@ class ListingService extends TransformerService{
   $listing->price = $data["price"];
   $listing->type = $data["type"];
   $listing->location = $data["location"];
-  $listing->rentor_name = auth()->user()->name;
   $listing->save();
 
   return redirect()->route('listing.index');
