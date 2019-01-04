@@ -8,36 +8,43 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+  const ADMIN_TYPE = 'admin';
+  const DEFAULT_TYPE = 'default';
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+  public function isAdmin()    {
+      return $this->type === self::ADMIN_TYPE;
+  }
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+  use Notifiable;
 
-    public static function boot(){
-      parent::boot();
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
+  protected $fillable = [
+      'name', 'email', 'password',
+  ];
 
-      static::creating(function($user){
-        $user->password = bcrypt($user->password);
-      });
-    }
+  /**
+   * The attributes that should be hidden for arrays.
+   *
+   * @var array
+   */
+  protected $hidden = [
+      'password', 'remember_token',
+  ];
 
-    //Relation methods
-    public function listings(){
-      return $this->hasMany('App\Listings');
-    }
+  public static function boot(){
+    parent::boot();
+
+    static::creating(function($user){
+      $user->password = bcrypt($user->password);
+    });
+  }
+
+  //Relation methods
+  public function listings(){
+    return $this->hasMany('App\Listings');
+  }
 }

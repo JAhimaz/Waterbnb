@@ -12,7 +12,7 @@
         if(is_logged_in())
         { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Logged In As <b><i><?php echo ucfirst(current_user()->name) ?></i></b>
+            Logged In As <b><i><?php echo ucfirst(current_user()->name) ?> <?php echo user_is_admin() ?></i></b>
           </a>
         <?php } else { ?>
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

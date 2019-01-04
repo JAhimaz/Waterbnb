@@ -33,6 +33,15 @@ if (!function_exists('user_id_available')){
   }
 }
 
+if (!function_exists('user_is_admin')){
+  function user_is_admin(){
+    if(current_user()->type == 'admin'){
+      return " (admin)";
+    }
+    return;
+  }
+}
+
 if (!function_exists('is_logged_in')){
   function is_logged_in(){
     if(current_user()){
